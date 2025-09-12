@@ -1,4 +1,34 @@
 pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/ChinmayPande48/cicd-jenkins-helm-k8s', credentialsId: 'github-creds'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh '''
+                eval $(minikube docker-env)
+                docker build -t hello-fastapi:v2 .
+                '''
+            }
+        }
+
+        stage('Deploy with Helm') {
+            steps {
+                sh '''
+                helm upgrade --install hello-fastapi ./helm-chart --set image.tag=v2
+                '''
+            }
+        }
+    }
+}
+
+/*
+pipeline {
   agent any
 
   environment {
@@ -47,3 +77,4 @@ pipeline {
     }
   }
 }
+*/
