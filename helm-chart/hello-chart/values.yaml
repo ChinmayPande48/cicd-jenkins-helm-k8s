@@ -1,0 +1,22 @@
+replicaCount: 1
+
+image:
+  repository: hello-fastapi     # we’ll build locally in minikube
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8080
+
+ingress:
+  enabled: false
+  host: hello.local
+  annotations: {}
+  tls: []
+
+resources: {}
+nodeSelector: {}
+tolerations: []
+affinity: {}
