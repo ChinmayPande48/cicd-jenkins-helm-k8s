@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/ChinmayPande48/cicd-jenkins-helm-k8s', credentialsId: 'github-creds'
+                git branch: 'main', url: 'https://github.com/ChinmayPande48/cicd-jenkins-helm-k8s'
             }
         }
 
