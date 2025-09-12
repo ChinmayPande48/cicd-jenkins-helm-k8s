@@ -19,7 +19,7 @@ pipeline {
         stage('Deploy with Helm') {
             steps {
                 sh '''
-                helm upgrade --install hello-fastapi ./helm-chart --set image.tag=v2
+                helm upgrade --install hello-fastapi /var/jenkins_home/workspace/fastapi-pipeline/helm-chart --set image.tag=v2
                 '''
             }
         }
