@@ -11,7 +11,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh '''
-                eval $(minikube docker-env)
+                //eval $(minikube docker-env)
                 docker build -t hello-fastapi:v2 .
                 '''
             }
