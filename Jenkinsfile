@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        KUBECONFIG = "/var/jenkins_home/.kube/config"
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -19,6 +23,8 @@ pipeline {
         stage('Deploy with Helm') {
             steps {
                 sh '''
+                kubectl config view
+                kubectl get nodes
                 helm upgrade --install hello-fastapi /var/jenkins_home/workspace/fastapi-pipeline/helm-chart --set image.tag=v2
                 '''
             }
